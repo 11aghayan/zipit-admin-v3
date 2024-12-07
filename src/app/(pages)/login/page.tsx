@@ -3,8 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Inter } from "next/font/google";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 
 import { Button } from "@/components/ui/button"
@@ -17,10 +17,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
 import { signin_schema } from "@/lib/zod";
-import { useState } from "react";
 import { login } from "@/app/actions/auth-actions";
-
-const inter = Inter({ subsets: ["latin"], weight: "700" });
+import { inter } from "@/lib/fonts";
 
 export default function Login() {
   const form = useForm<z.infer<typeof signin_schema>>({
