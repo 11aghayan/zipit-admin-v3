@@ -1,8 +1,8 @@
 import { object, string } from "zod";
  
 export const signin_schema = object({
-  username: string({ required_error: "Օգտատիրոջ անունը բացակայում է", invalid_type_error: "type is not string" })
-    .min(1, "Օգտատիրոջ անունը բացակայում է"),
+  username: string({ required_error: "Մուտքանունը բացակայում է", invalid_type_error: "type is not string" })
+    .min(1, "Մուտքանունը բացակայում է"),
   password: string({ required_error: "Գաղտնաբառը բացակայում է", invalid_type_error: "type is not string" })
     .trim()
     .min(1, "Գաղտնաբառը բացակայում է")
