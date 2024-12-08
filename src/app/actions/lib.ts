@@ -18,8 +18,9 @@ export class Action_Error {
   success = false;
   messages: string[];
   
-  constructor(data: string | string[]) {
+  constructor(data: string | string[], fn_name: string, error: unknown) {
     this.messages = typeof data === "string" ? [data] : data;
+    console.debug(`Error in action ${fn_name}:\n`, error);
   }
 }
 

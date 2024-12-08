@@ -16,7 +16,8 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
   
-  const path_from = searchParams.get("pathfrom") ?? "";
+  const path_from = searchParams.get("pathfrom") || "categories";
+  console.log(path_from);
   
   if (!token && !pathname.startsWith("/login")) {
     url.pathname = '/login';
@@ -24,7 +25,7 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (token && pathname.startsWith("/login")) {
+  if (token && (pathname.startsWith("/login") || pathname === "/")) {
     url.pathname = `/${path_from}`;
     return NextResponse.redirect(url);
   }

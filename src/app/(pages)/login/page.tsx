@@ -45,7 +45,7 @@ export default function Login() {
         return;
       }
 
-      const pathname = search_params.get("pathfrom") || "";
+      const pathname = search_params.get("pathfrom") || "categories";
       search_params.delete("pathfrom");
 
       router.replace(`/${pathname}?${search_params.toString()}`);

@@ -20,7 +20,7 @@ export default function Mobile_Menu() {
     <div className="bg-foreground flex justify-between gap-2 p-2">
       <Search />
       <Sheet open={is_open} onOpenChange={set_is_open}>
-        <SheetTrigger className="ml-auto">
+        <SheetTrigger className="ml-auto min-h-8">
           <Icon icon="line-md:menu-fold-left" fontSize={32} className="text-background" />
         </SheetTrigger>
         <SheetContent
