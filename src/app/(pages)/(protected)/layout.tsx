@@ -1,6 +1,5 @@
 import { T_Props_Children } from "@/app/types";
 import Navbar from "@/app/ui/Navbar";
-import Logout_Btn from "@/app/ui/Logout_Btn";
 import Mobile_Menu from "@/app/ui/Mobile_Menu";
 import { inter } from "@/lib/fonts";
 
