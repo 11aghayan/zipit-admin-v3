@@ -3,8 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Inter } from "next/font/google";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 
 import { Button } from "@/components/ui/button"
@@ -17,10 +17,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
 import { signin_schema } from "@/lib/zod";
-import { useState } from "react";
 import { login } from "@/app/actions/auth-actions";
-
-const inter = Inter({ subsets: ["latin"], weight: "700" });
+import { inter } from "@/lib/fonts";
 
 export default function Login() {
   const form = useForm<z.infer<typeof signin_schema>>({
@@ -32,6 +30,7 @@ export default function Login() {
   });
   
   const router = useRouter();
+  const search_params = new URLSearchParams(useSearchParams().toString());
   
   const [is_loading, set_is_loading] = useState(false);
   const [errors, set_errors] = useState<string[]>([]);
@@ -46,7 +45,10 @@ export default function Login() {
         return;
       }
 
-      router.refresh();
+      const pathname = search_params.get("pathfrom") || "";
+      search_params.delete("pathfrom");
+
+      router.replace(`/${pathname}?${search_params.toString()}`);
     } finally {
       set_is_loading(false);
     }
