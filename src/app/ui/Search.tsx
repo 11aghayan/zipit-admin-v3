@@ -11,18 +11,22 @@ export default function Search() {
   const router = useRouter();
   const pathname = usePathname();
 
+  let timeout_id: NodeJS.Timeout;
+
   const handle_change = useCallback((text: string) => {
     text = text.length > 100 ? text.slice(0, 100) : text;
     
     const params = new URLSearchParams(search_params.toString());
     params.set("search", text);
-
+    if (!params.get("search")) {
+      params.delete("search");
+    }
     router.push(`${pathname}?${params.toString()}`);
   }, [search_params]);
   
   return (
     <div 
-      className="relative w-full max-w-60"
+      className="relative w-full max-w-56"
       style={{
         display: pathname === "/items" ? "block" : "none"
       }}
@@ -36,7 +40,12 @@ export default function Search() {
         aria-label="items search input"
         placeholder="Որոնել ապրանքներ..."
         className="pr-8 bg-background"
-        onChange={(e) => handle_change(e.target.value)}
+        onChange={(e) => {
+          clearTimeout(timeout_id);
+          timeout_id = setTimeout(() => {
+            handle_change(e.target.value)
+          }, 500);
+        }}
       />
     </div>
   );

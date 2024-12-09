@@ -17,18 +17,16 @@ export default function Navbar() {
       <nav className="flex gap-2">
         {
           routes.map(({ href, label}) => (
-            <Button 
+            <Link 
               key={href}
-              variant={pathname === `/${href}` ? "default" : "secondary"}
-              className="px-0 py-0"
+              href={href}
             >
-              <Link 
-                href={href}
-                className="px-4 py-2"
+              <Button 
+                variant={pathname === href ? "default" : "secondary"}
               >
                 {label}
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           ))
         }
       </nav>

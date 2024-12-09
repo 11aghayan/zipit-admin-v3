@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,9 +16,10 @@ type Props = {
   id: string;
   label_am: string;
   label_ru: string;
+  item_count: string;
 }
 
-export default function Category_Card({ id, label_am, label_ru }: Props) {
+export default function Category_Card({ id, label_am, label_ru, item_count }: Props) {
   const { toast } = useToast();
   
   const [header, set_header] = useState(label_am);
@@ -79,7 +80,8 @@ export default function Category_Card({ id, label_am, label_ru }: Props) {
       className="flex flex-col justify-between"
     >
       <CardHeader className="text-center font-medium">
-        {header}
+        <CardTitle>{header}</CardTitle>
+        <CardDescription>Ապրանքների քանակը: {item_count}</CardDescription>
       </CardHeader>
       <CardContent className="flex justify-between gap-1">
         <Dialog open={is_edit_dialog_open} onOpenChange={set_is_edit_dialog_open}>
