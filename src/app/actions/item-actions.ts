@@ -10,7 +10,7 @@ import { T_Item_Short, T_Server_Error_Response } from "@/app/types";
 
 export type T_Items_Response = {
   length: number;
-  page: number;
+  pages: number;
   items: T_Item_Short[];
 }
 

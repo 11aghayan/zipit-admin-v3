@@ -12,7 +12,7 @@ export default function Special_Groups_Section({ header_styles }: Props) {
   const router = useRouter();
   const search_params = new URLSearchParams(useSearchParams().toString());
   
-  const [special_groups, set_special_groups] = useState<(keyof typeof special_group_map)[]>([]);
+  const [special_groups, set_special_groups] = useState<(keyof typeof special_group_map)[]>(search_params.get("special_groups")?.split(",") as ("liq" | "prm" | "new")[] | undefined || []);
   
   
   useEffect(() => {
