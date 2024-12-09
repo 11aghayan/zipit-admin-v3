@@ -17,8 +17,7 @@ export default async function middleware(req: NextRequest) {
   }
   
   const path_from = searchParams.get("pathfrom") || "categories";
-  console.log(path_from);
-  
+
   if (!token && !pathname.startsWith("/login")) {
     url.pathname = '/login';
     url.searchParams.set("pathfrom", pathname.slice(1));

@@ -76,6 +76,7 @@ export default function Category_Card({ id, label_am, label_ru }: Props) {
   return (
     <Card 
       key={id}
+      className="flex flex-col justify-between"
     >
       <CardHeader className="text-center font-medium">
         {header}

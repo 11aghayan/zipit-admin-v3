@@ -50,16 +50,16 @@ export async function logout(): Promise<T_Success<null> | T_Error> {
   }
 }
 
-export async function change_password(password_unchecked: any, new_password_unchecked: any) {
+export async function change_password({password, new_password, new_password_repeat }: { password: string, new_password: string, new_password_repeat: string }) {
   try {
-    const zod_result = await change_password_schema.safeParseAsync({ password: password_unchecked, new_password: new_password_unchecked });
+    const zod_result = await change_password_schema.safeParseAsync({ password, new_password, new_password_repeat });
     
     if (!zod_result.success) {
       const zod_messages = zod_result.error.errors.map(err => err.message);
       return new Action_Error(zod_messages, "change_password", zod_result.error) as T_Error;
     }
     
-    const { status, data } = await axios.put("/auth/change-password", { password: "password", new_password: "Password_1" }) satisfies AxiosResponse & { data: T_Server_Error_Response };
+    const { status, data } = await axios.put("/auth/change-password", { password, new_password }) satisfies AxiosResponse & { data: T_Server_Error_Response };
 
     if (!is_status_success(status)) {
       return new Action_Error(data.message, "change_password", data);

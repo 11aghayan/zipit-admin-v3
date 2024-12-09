@@ -38,20 +38,17 @@ export default function Login() {
   async function handle_submit({ username, password }: z.infer<typeof signin_schema>) {
     set_is_loading(true);
     set_errors([]);
-    try {
-      const res = await login(username, password);
-      if (!res.success) {
-        set_errors(res.messages);
-        return;
-      }
-
-      const pathname = search_params.get("pathfrom") || "categories";
-      search_params.delete("pathfrom");
-
-      router.replace(`/${pathname}?${search_params.toString()}`);
-    } finally {
+    const res = await login(username, password);
+    if (!res.success) {
+      set_errors(res.messages);
       set_is_loading(false);
+      return;
     }
+
+    const pathname = search_params.get("pathfrom") || "categories";
+    search_params.delete("pathfrom");
+
+    router.replace(`/${pathname}?${search_params.toString()}`);
   }
   
   return (

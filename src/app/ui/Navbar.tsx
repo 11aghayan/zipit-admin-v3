@@ -7,6 +7,7 @@ import { routes } from "@/lib/routes";
 import Search from "@/app/ui/Search";
 import Logout_Btn from "@/app/ui/Logout_Btn";
 import { Button } from "@/components/ui/button";
+import Settings_Btn from "@/app/ui/Settings_Btn";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -32,7 +33,10 @@ export default function Navbar() {
         }
       </nav>
       <Search />
-      <Logout_Btn variant="secondary" />
+      <div className="space-x-1">
+        <Settings_Btn variant="secondary" />
+        <Logout_Btn />
+      </div>
     </div>
   );
 }

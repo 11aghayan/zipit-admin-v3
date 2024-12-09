@@ -6,11 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { logout } from "@/app/actions/auth-actions";
 
-type Props = {
-  variant: "default" | "secondary";
-}
-
-export default function Logout_Btn({ variant }: Props) {
+export default function Logout_Btn() {
   const router = useRouter();
   const pathname = usePathname();
   const search_params = new URLSearchParams(useSearchParams().toString());
@@ -29,7 +25,7 @@ export default function Logout_Btn({ variant }: Props) {
     <Button 
       type="button"
       onClick={handle_logout}
-      variant={variant}
+      variant="destructive"
     >
       <Icon icon="line-md:logout" />
     </Button>
