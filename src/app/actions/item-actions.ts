@@ -27,3 +27,17 @@ export async function get_all_items(search_params: string) {
     return new Action_Error("Unknown Error", "get_all_items", error);
   }
 }
+
+export async function delete_item(id: string) {
+  try {
+    const { data, status } = await axios.delete(`/items/item/admin/${id}`) satisfies AxiosResponse satisfies { data: T_Server_Error_Response };
+
+    if (!is_status_success(status)) {
+      return new Action_Error(data.message, "delete_item", data.message);
+    }
+    
+    return new Action_Success(null);
+  } catch (error) {
+    return new Action_Error("Unknown Error", "delete_item", error);
+  }
+}

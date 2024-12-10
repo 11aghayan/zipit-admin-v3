@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import clsx from "clsx";
 
 import { routes } from "@/lib/routes";
 import Search from "@/app/ui/Search";
@@ -20,6 +21,7 @@ export default function Navbar() {
             <Link 
               key={href}
               href={href}
+              className={clsx(pathname.startsWith(href) ? "pointer-events-none" : "")}
             >
               <Button 
                 variant={pathname === href ? "default" : "secondary"}

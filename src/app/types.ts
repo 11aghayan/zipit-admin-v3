@@ -1,4 +1,4 @@
-type T_ID = string;
+export type T_ID = string;
 
 export type T_Props_Children = Readonly<{
   children: React.ReactNode;
