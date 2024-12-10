@@ -59,12 +59,13 @@ export default function Category_List() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
       {
-        data.data.categories.map(({ id, label_am, label_ru }) => (
+        data.data.categories.map(({ id, label_am, label_ru, item_count }) => (
           <Category_Card 
             key={id}
             id={id}
             label_am={label_am}
             label_ru={label_ru}
+            item_count={item_count}
           />
         ))
       }

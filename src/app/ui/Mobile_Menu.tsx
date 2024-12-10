@@ -36,7 +36,10 @@ export default function Mobile_Menu() {
                   <Link
                     key={href} 
                     href={href}
-                    className={clsx("w-full rounded-md p-2", pathname === `/${href}` ? "bg-foreground text-background" : "bg-background text-foreground")}
+                    className={clsx(
+                      "w-full rounded-md p-2", 
+                      pathname === href ? "bg-foreground text-background" : "bg-background text-foreground",
+                      pathname.startsWith(href) ? "pointer-events-none" : "")}
                     onClick={() => set_is_open(false)}
                   >
                     {label}
@@ -45,7 +48,7 @@ export default function Mobile_Menu() {
               }
             </div>
             <div className="ml-auto">
-              <Logout_Btn variant="default" />
+              <Logout_Btn />
             </div>
           </section>
         </SheetContent>

@@ -1,10 +1,10 @@
 export const routes = [
   {
-    href: "categories",
+    href: "/categories",
     label: "Կատեգորիաներ"
   },
   {
-    href: "items",
+    href: "/items",
     label: "Ապրանքներ"
   }
 ];
