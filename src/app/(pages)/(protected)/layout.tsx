@@ -11,7 +11,7 @@ type Props = T_Props_Children;
 export default function Layout({ children }: Props) {
   
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <Filters_Menu />
       <div className="w-full">
         <h1 className={`${inter.className} p-3 text-center text-xl sm:text-2xl`}>ZIPIT.admin</h1>
@@ -21,7 +21,7 @@ export default function Layout({ children }: Props) {
         <div className="sm:hidden">
           <Mobile_Menu />
         </div>
-        <main className="p-2 sm:p-3">
+        <main className="p-3">
           {children}
         </main>
       </div>
