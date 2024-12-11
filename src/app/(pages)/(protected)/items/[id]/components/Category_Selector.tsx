@@ -14,18 +14,10 @@ type Props = {
 export default function Category_Selector({ item, set_item }: Props) {
   
   const [categories, set_categories] = useState<Action_Error | T_Success<T_Categories_Response>>();
-  const selected_category = item.category_id;
   
   useEffect(() => {
     fetch_categories();
   }, []);
-
-  useEffect(() => {
-    set_item(prev => ({
-      ...prev,
-      category_id: selected_category
-    }))
-  }, [selected_category])
   
   async function fetch_categories() {
     const data = await get_all_categories(); 
@@ -45,10 +37,10 @@ export default function Category_Selector({ item, set_item }: Props) {
   }
   
   return (
-    <div>
-      <Label>Կատեգորիա</Label>
+    <div className="m-1">
+      <Label className="mb-1">Կատեգորիա</Label>
       <Select 
-        defaultValue={selected_category} 
+        value={item.category_id} 
         onValueChange={val => set_item(prev => ({ ...prev, category_id: val }))}
       >
         <SelectTrigger>

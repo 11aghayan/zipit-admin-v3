@@ -16,11 +16,27 @@ export default function Common_Details_Accordion({ item, set_item }: Props) {
       value="common-details"
     >
       <AccordionTrigger>Ընդհանուր մանրամասներ</AccordionTrigger>
-      <AccordionContent>
+      <AccordionContent className="flex flex-col gap-2">
         <Category_Selector 
           item={item}
           set_item={set_item}
         />
+        <Label className="m-1">
+          <p>Հայերեն անվանում</p>
+          <Input 
+            className="mt-1"
+            value={item.name_am}
+            onChange={(e) => set_item(prev => ({ ...prev, name_am: e.target.value }))}
+          />
+        </Label>
+        <Label className="m-1">
+          <p>Ռուսերեն անվանում</p>
+          <Input 
+            className="mt-1"
+            value={item.name_ru}
+            onChange={(e) => set_item(prev => ({ ...prev, name_ru: e.target.value }))}
+          />
+        </Label>
       </AccordionContent>
     </AccordionItem>
   );
