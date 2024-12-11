@@ -1,6 +1,7 @@
 import { T_Item_Body } from "@/app/types";
 import { Accordion } from "@/components/ui/accordion";
-import Common_Details_Accordion from "./Common_Details_Accordion";
+
+import Common_Data from "./Common_Data";
 
 type Props = {
   item: T_Item_Body<"add" | "edit">;
@@ -12,7 +13,7 @@ export default function Layout({ item, set_item }: Props) {
   return (
     <div>
       <Accordion type="single" collapsible>
-        <Common_Details_Accordion 
+        <Common_Data 
           set_item={set_item}
           item={item}
         />
