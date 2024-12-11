@@ -38,8 +38,7 @@ export default function Mobile_Menu() {
                     href={href}
                     className={clsx(
                       "w-full rounded-md p-2", 
-                      pathname === href ? "bg-foreground text-background" : "bg-background text-foreground",
-                      pathname.startsWith(href) ? "pointer-events-none" : "")}
+                      pathname === href ? "bg-foreground pointer-events-none text-background" : "bg-background text-foreground")}
                     onClick={() => set_is_open(false)}
                   >
                     {label}

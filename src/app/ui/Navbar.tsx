@@ -21,7 +21,7 @@ export default function Navbar() {
             <Link 
               key={href}
               href={href}
-              className={clsx(pathname.startsWith(href) ? "pointer-events-none" : "")}
+              className={clsx(pathname === href ? "pointer-events-none" : "")}
             >
               <Button 
                 variant={pathname === href ? "default" : "secondary"}

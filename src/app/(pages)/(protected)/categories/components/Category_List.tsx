@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import { get_all_categories, T_Categories_Response } from "@/app/actions/category-actions";
 import { Action_Error } from "@/app/actions/lib";
 import { T_Success } from "@/app/types";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import Category_Card from "./Category_Card";
-import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Category_List() {
   const [data, set_data] = useState<Action_Error | T_Success<T_Categories_Response>>();
