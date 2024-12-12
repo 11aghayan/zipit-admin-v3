@@ -42,16 +42,7 @@ export async function delete_item(id: string) {
   }
 }
 
-export async function add_item(b: T_Item_Body<"add">) {
-  const body = {
-    ...b,
-    variants: b.variants.map(variant => {
-      const temp = JSON.parse(JSON.stringify(variant));
-      delete temp.photo_id;
-      return temp;
-    })
-  }
-  
+export async function add_item(body: T_Item_Body<"add">) {
   try {
     const { data, status } = await axios.post("/items/item/admin", body) satisfies AxiosResponse satisfies { data: { item: T_Item<"full"> } | T_Server_Error_Response };
 

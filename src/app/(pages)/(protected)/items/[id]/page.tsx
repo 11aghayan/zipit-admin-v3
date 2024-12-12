@@ -8,6 +8,7 @@ import { get_item } from "@/app/actions/item-actions";
 import { Action_Error, Action_Success } from "@/app/actions/lib";
 
 import Layout from "./components/Layout";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Item() {
   const { id } = useParams();
@@ -37,8 +38,7 @@ export default function Item() {
             promo: null,
             size_unit: "mm",
             size_value: 0,
-            special_group: null,
-            photo_id: "0"
+            special_group: null
           }
         ]
       });
@@ -63,7 +63,16 @@ export default function Item() {
   
   if (!item || is_loading) {
     return (
-      <p>Loading...</p>
+      <div className="space-y-1">
+        {
+          new Array(4).fill(1).map((val, i) => (
+            <Skeleton 
+              key={val + i}
+              className="h-[52px]"
+            />
+          ))
+        }
+      </div>
     );
   }
   
@@ -79,9 +88,9 @@ export default function Item() {
   } 
   
   return (
-  <Layout 
-    item={item} 
-    set_item={set_item as React.Dispatch<React.SetStateAction<T_Item_Body<"add" | "edit">>>}
-  />
+    <Layout 
+      item={item} 
+      set_item={set_item as React.Dispatch<React.SetStateAction<T_Item_Body<"add" | "edit">>>}
+    />
   );
 };
