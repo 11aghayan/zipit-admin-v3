@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -16,11 +17,13 @@ type Props = {
   label: string,
   delete_func(id: string): Promise<Action_Error | Action_Success<null>>,
   className?: string;
+  href?: string;
   toast_msg: string;
 }
 
-export default function Delete_Modal({ id, is_open, set_is_open, toast_msg, title, label, delete_func, className = "" }: Props) {
+export default function Delete_Modal({ id, is_open, set_is_open, toast_msg, title, label, delete_func, className = "", href }: Props) {
   const { toast } = useToast();
+  const router = useRouter();
   
   const [is_loading, set_is_loading] = useState(false);
   const [errors, set_errors] = useState<string[]>([]);
@@ -40,7 +43,11 @@ export default function Delete_Modal({ id, is_open, set_is_open, toast_msg, titl
         title: toast_msg,
         className: "text-emerald-700"
       });
-      window.location.reload();
+      if (!href) {
+        window.location.reload();
+      } else {
+        router.push(href);
+      }
     } finally {
       set_is_loading(false);
     }
