@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
-import { T_Item_Body } from "@/app/types";
+import { T_Item, T_Item_Body } from "@/app/types";
 import { Button } from "@/components/ui/button";
-import { add_item, edit_item } from "@/app/actions/item-actions";
+import { add_item, delete_item, edit_item } from "@/app/actions/item-actions";
 import { Action_Error } from "@/app/actions/lib";
 import { useToast } from "@/hooks/use-toast";
+import Delete_Modal from "@/app/ui/Delete_Modal";
 
 import Common_Data from "./Common_Data";
 import Variant, { new_variant } from "./Variant";
@@ -21,6 +22,7 @@ export default function Layout({ item, set_item, action }: Props) {
   const { toast } = useToast();
   const router = useRouter();
   
+  const [is_delete_modal_open, set_is_delete_modal_open] = useState(false);
   const [is_loading, set_is_loading] = useState(false);
   const [errors, set_errors] = useState<string[]>([]);
   
@@ -105,6 +107,23 @@ export default function Layout({ item, set_item, action }: Props) {
         >
           Ավելացնել նոր տարբերակ
         </Button>
+        {
+          action === "edit"
+          ?
+          <Delete_Modal 
+            delete_func={delete_item}
+            id={(item as T_Item<"full">).id}
+            is_open={is_delete_modal_open}
+            label={item.name_am}
+            set_is_open={set_is_delete_modal_open}
+            title="Վստա՞հ եք, որ ցանկանում եք ջնջել ապրանքը"
+            toast_msg="Ապրանքը հաջողությամբ ջնջվել է"
+            className="w-full mt-2"
+            href="/items"
+          />
+          :
+          null
+        }
         <Button 
           type="button"
           className="mt-2 w-full"
