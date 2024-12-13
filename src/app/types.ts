@@ -79,5 +79,5 @@ export type T_Item_Body<T extends "add" | "edit"> = T extends "add" ?
   variants: (Omit<T_Item_Variant, "id" | "item_id" | "size_id" | "photo_id" | "color_id" | "creation_date">)[]
 }) : 
 (T_Item_Main & {
-  variants: (Omit<T_Item_Variant, "creation_date">)[]
+  variants: (Omit<T_Item_Variant, "id" | "item_id" | "size_id" | "photo_id" | "color_id" | "creation_date"> | Omit<T_Item_Variant, "creation_date">)[]
 });

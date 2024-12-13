@@ -5,8 +5,8 @@ import { Label } from "@/components/ui/label";
 
 import Category_Selector from "./Category_Selector";
 type Props = {
-  item: T_Item_Body<"add" | "edit">;
-  set_item: React.Dispatch<React.SetStateAction<T_Item_Body<"add" | "edit">>>;
+  item: T_Item_Body<"add" | "edit">,
+  set_item: React.Dispatch<React.SetStateAction<T_Item_Body<"add" | "edit">>>
 }
 
 export default function Common_Data({ item, set_item }: Props) {
