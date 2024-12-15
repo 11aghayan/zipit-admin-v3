@@ -39,6 +39,7 @@ export default function Search() {
         type="text"
         aria-label="items search input"
         placeholder="Որոնել ապրանքներ..."
+        defaultValue={search_params.get("search") || ""}
         className="pr-8 bg-background"
         onChange={(e) => {
           clearTimeout(timeout_id);

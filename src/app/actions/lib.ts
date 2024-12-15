@@ -1,6 +1,6 @@
 import axs from "axios";
 
-const API_BASE_URL = "http://localhost:3200/api/v2";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const SUCCESS_STATUSES = [200, 201, 204];
 
