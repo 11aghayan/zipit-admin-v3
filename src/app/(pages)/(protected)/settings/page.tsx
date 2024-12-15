@@ -1,4 +1,4 @@
-import Change_Password from "./components/Change_Password";
+import Change_Password from "@/app/ui/settings/Change_Password";
 
 export default function Settings() {
   

@@ -7,7 +7,10 @@ const nextConfig = {
         hostname: "localhost"
       }
     ]
-  }
+  },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 };
 
 export default nextConfig;

@@ -8,8 +8,8 @@ import { get_item } from "@/app/actions/item-actions";
 import { Action_Error, Action_Success } from "@/app/actions/lib";
 import { Skeleton } from "@/components/ui/skeleton";
 
-import Layout from "./components/Layout";
-import { new_variant } from "./components/Variant";
+import Layout from "@/app/ui/pages[id]/Layout";
+import { new_variant } from "@/app/ui/pages[id]/Variant";
 
 export default function Item() {
   const { id } = useParams();

@@ -1,5 +1,5 @@
-import Add_Category from "./components/Add_Category";
-import Category_List from "./components/Category_List";
+import Add_Category from "@/app/ui/categories/Add_Category";
+import Category_List from "@/app/ui/categories/Category_List";
 
 export default function Categories() {
 

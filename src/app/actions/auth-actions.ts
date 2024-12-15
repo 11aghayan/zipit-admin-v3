@@ -13,7 +13,7 @@ import {
   T_Error,
   T_Success } from "@/app/types";
 
-export async function login(username_unchecked: any, password_unchecked: any): Promise<T_Success<null> | T_Error> {
+export async function login(username_unchecked: string, password_unchecked: string): Promise<T_Success<null> | T_Error> {
   try {
     const zod_result = await signin_schema.safeParseAsync({ username: username_unchecked, password: password_unchecked });
   

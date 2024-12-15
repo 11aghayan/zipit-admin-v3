@@ -4,7 +4,7 @@ import Mobile_Menu from "@/app/ui/Mobile_Menu";
 import { inter } from "@/lib/fonts";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
-import Filters_Menu from "./items/components/filters_menu/Filters_Menu";
+import Filters_Menu from "../../ui/pages/filters_menu/Filters_Menu";
 
 type Props = T_Props_Children;
 

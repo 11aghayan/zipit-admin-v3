@@ -1,6 +1,6 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import Add_Item from "./components/Add_Item";
-import Item_List from "./components/Item_List";
+import Add_Item from "@/app/ui/pages/Add_Item";
+import Item_List from "@/app/ui/pages/Item_List";
 
 export default function Items() {
   

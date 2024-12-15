@@ -1,3 +1,5 @@
+import { Icon } from "@iconify/react/dist/iconify.js";
+
 import { T_Item_Body, T_Item_Variant } from "@/app/types";
 import { AccordionContent, AccordionItem, Accordion, AccordionTrigger } from "@/components/ui/accordion";
 import { size_unit_map } from "@/lib/utils";
@@ -11,7 +13,6 @@ import Price_Promo from "./Price_Promo";
 import Special_Group from "./Special_Group";
 import Available from "./Available";
 import Description from "./Description";
-import { Icon } from "@iconify/react/dist/iconify.js";
 
 type Props = {
   variant: Omit<T_Item_Variant, "id" | "item_id" | "size_id" | "photo_id" | "color_id" | "creation_date"> | Omit<T_Item_Variant, "creation_date">,

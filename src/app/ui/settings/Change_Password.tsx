@@ -60,19 +60,19 @@ export default function Change_Password() {
   
   const inputs = [
     {
-      name: "password" as "password",
+      name: "password" as const,
       toggle_visible: () => set_password_visible(prev => !prev),
       visible: password_visible,
       label: "Գաղտնաբառ"
     },
     {
-      name: "new_password" as "new_password",
+      name: "new_password" as const,
       toggle_visible: () => set_new_password_visible(prev => !prev),
       visible: new_password_visible,
       label: "Նոր գաղտնաբառ"
     },
     {
-      name: "new_password_repeat" as "new_password_repeat",
+      name: "new_password_repeat" as const,
       toggle_visible: () => set_new_password_repeat_visible(prev => !prev),
       visible: new_password_repeat_visible,
       label: "Կրկնեք նոր գաղտնաբառը"
@@ -99,6 +99,7 @@ export default function Change_Password() {
                       <Input 
                         type={visible ? "text" : "password"}
                         className="pr-16"
+                        disabled={is_loading}
                         {...field}
                       />
                     </FormControl>
@@ -107,6 +108,7 @@ export default function Change_Password() {
                       onClick={toggle_visible}
                       className="absolute top-1/2 -translate-y-1/2 right-0"
                       type="button"
+                      disabled={is_loading}
                     >
                       { 
                         visible ?
