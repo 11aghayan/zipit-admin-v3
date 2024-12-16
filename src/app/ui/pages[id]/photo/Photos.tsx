@@ -24,6 +24,7 @@ export default function Photos({ variant, set_item, index }: Props) {
   return (
     <div className='w-full max-w-[500px] space-y-2 self-start mx-auto'>
       <Selected_Photo 
+        variant={variant}
         index={index}
         selected_photo={selected_photo}
         set_item={set_item}

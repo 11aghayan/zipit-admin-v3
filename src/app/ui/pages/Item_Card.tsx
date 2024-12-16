@@ -29,6 +29,7 @@ export default function Item_Card({ id, photo_id, name }: Props) {
           width={150} 
           height={150} 
           className="m-auto rounded-md"
+          loading="lazy"
         />
       </CardContent>
       <CardHeader className="flex-1">

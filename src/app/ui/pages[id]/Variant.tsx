@@ -23,10 +23,24 @@ type Props = {
 
 export default function Variant({ set_item, variant, index, variants_count }: Props) {
   function delete_variant() {
-    set_item(prev => ({
-      ...prev,
-      variants: prev.variants.filter((_v, i) => i !== index)
-    }))
+    if ("photo_id" in variant) {
+      set_item(prev => ({
+        ...prev,
+        variants: prev.variants.map((v, i) => {
+          if (i !== index) return v;
+          return {
+            ...v,
+            delete: true
+          }
+        })
+      }));
+    } else {
+      set_item(prev => ({
+        ...prev,
+        variants: prev.variants.filter((_v, i) => i !== index)
+      }))
+    }
+    
   }
   
   return (

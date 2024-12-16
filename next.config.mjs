@@ -6,7 +6,8 @@ const nextConfig = {
         protocol: "http",
         hostname: "localhost"
       }
-    ]
+    ],
+    minimumCacheTTL: 0
   }
 };
 

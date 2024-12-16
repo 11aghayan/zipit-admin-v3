@@ -82,6 +82,10 @@ export default function Layout({ item, set_item, action }: Props) {
       />
       {
         item.variants.map((variant, i, arr) => (
+          "delete" in variant
+          ?
+          null
+          :
           <Variant 
             key={i}
             variant={variant}
