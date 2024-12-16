@@ -13,7 +13,6 @@ export default async function middleware(req: NextRequest) {
     '/favicon.ico'
   ];
   
-  console.log("Token: ", token?.value || "No token");
   if (excluded_paths.some(path => pathname.startsWith(path))) {
     return NextResponse.next();
   }
