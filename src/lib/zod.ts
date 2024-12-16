@@ -62,12 +62,16 @@ export const item_edit_schema = item_add_schema.extend({
     .min(1, "Item ID is missing"),
   variants: item_add_schema.shape.variants.element.extend({
     photo_id: string({ required_error: "Photo ID is missing" })
-      .min(1, "Photo ID is missing"),
+      .min(1, "Photo ID is missing")
+      .optional(),
     color_id: string({ required_error: "Color ID is missing" })
-      .min(1, "Color ID is missing"),
+      .min(1, "Color ID is missing")
+      .optional(),
     size_id: string({ required_error: "Size ID is missing" })
-      .min(1, "Size ID is missing"),
+      .min(1, "Size ID is missing")
+      .optional(),
     item_id: string({ required_error: "Item ID is missing" })
-      .min(1, "Item ID is missing"),
+      .min(1, "Item ID is missing")
+      .optional(),
   }).array()
 });
