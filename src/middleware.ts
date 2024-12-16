@@ -11,7 +11,8 @@ export default async function middleware(req: NextRequest) {
     '/api',
     '/favicon.ico'
   ];
-
+console.log(pathname);
+console.log(token);
   if (excluded_paths.some(path => pathname.startsWith(path))) {
     return NextResponse.next();
   }
