@@ -28,7 +28,7 @@ export const category_schema = object({
     .min(1, "Ռուսերեն անվանումը բացակայում է")
 });
 
-export const item_add_schema = object({
+export const item_schema = object({
   name_am: string({ required_error: "Հայերեն անունը բացակայում է" })
     .min(1, "Հայերեն անունը բացակայում է")
     .max(100, "Անունը չի կարող ունենալ ավելի քան 100 նիշ"),
@@ -55,23 +55,4 @@ export const item_add_schema = object({
     description_am: string().nullable(),
     description_ru: string().nullable()
   }).array().min(1)
-});
-
-export const item_edit_schema = item_add_schema.extend({ 
-  id: string({ required_error: "Item ID is missing" })
-    .min(1, "Item ID is missing"),
-  variants: item_add_schema.shape.variants.element.extend({
-    photo_id: string({ required_error: "Photo ID is missing" })
-      .min(1, "Photo ID is missing")
-      .optional(),
-    color_id: string({ required_error: "Color ID is missing" })
-      .min(1, "Color ID is missing")
-      .optional(),
-    size_id: string({ required_error: "Size ID is missing" })
-      .min(1, "Size ID is missing")
-      .optional(),
-    item_id: string({ required_error: "Item ID is missing" })
-      .min(1, "Item ID is missing")
-      .optional(),
-  }).array()
 });

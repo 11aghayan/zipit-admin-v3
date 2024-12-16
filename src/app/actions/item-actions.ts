@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 
 import { T_Item_Body, T_Item, T_Server_Error_Response, T_Error } from "@/app/types";
-import { item_add_schema, item_edit_schema } from "@/lib/zod";
+import { item_schema } from "@/lib/zod";
 
 import { 
   is_status_success, 
@@ -46,7 +46,7 @@ export async function delete_item(id: string) {
 
 export async function add_item(body: T_Item_Body<"add">) {
   try {
-    const zod_result = await item_add_schema.safeParseAsync(body);
+    const zod_result = await item_schema.safeParseAsync(body);
 
     if (!zod_result.success) {
       const zod_messages = zod_result.error.errors.map(err => err.message);
@@ -67,7 +67,7 @@ export async function add_item(body: T_Item_Body<"add">) {
 
 export async function edit_item(body: T_Item_Body<"edit">) {
   try {
-    const zod_result = await item_edit_schema.safeParseAsync(body);
+    const zod_result = await item_schema.safeParseAsync(body);
 
     if (!zod_result.success) {
       const zod_messages = zod_result.error.errors.map(err => err.message);
