@@ -4,13 +4,14 @@ import { useSearchParams } from "next/navigation";
 
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import clsx from "clsx";
+import { Suspense } from "react";
 
 type Props = {
   page: number,
   pages: number
 }
 
-export default function Items_Pagination({ page, pages }: Props) {
+function Items_Pagination({ page, pages }: Props) {
   const search_params = new URLSearchParams(useSearchParams().toString());
   
   function page_link_url(page: number, pages: number) {
@@ -70,5 +71,13 @@ export default function Items_Pagination({ page, pages }: Props) {
         </PaginationItem>
       </PaginationContent>
     </Pagination>
+  );
+}
+
+export default function Wrapper({ page, pages }: Props) {
+  return (
+    <Suspense>
+      <Items_Pagination page={page} pages={pages} />
+    </Suspense>
   );
 }

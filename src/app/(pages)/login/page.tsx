@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 
 import { Button } from "@/components/ui/button"
@@ -20,7 +20,7 @@ import { signin_schema } from "@/lib/zod";
 import { login } from "@/app/actions/auth-actions";
 import { inter } from "@/lib/fonts";
 
-export default function Login() {
+function Login() {
   const form = useForm<z.infer<typeof signin_schema>>({
     resolver: zodResolver(signin_schema),
     defaultValues: {
@@ -106,3 +106,11 @@ export default function Login() {
     </div>
   );
 };
+
+export default function Wrapper() {
+  return (
+    <Suspense>
+      <Login />
+    </Suspense>
+  );
+}

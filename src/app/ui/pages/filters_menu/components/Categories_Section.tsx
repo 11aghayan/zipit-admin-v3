@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { get_all_categories, T_Categories_Response } from "@/app/actions/category-actions";
@@ -12,7 +12,7 @@ import { T_Section_Props } from "../Filters_Menu";
 
 type Props = T_Section_Props;
 
-export default function Categories_Section({ header_styles }: Props) {
+function Categories_Section({ header_styles }: Props) {
   const router = useRouter();
   const search_params = new URLSearchParams(useSearchParams().toString());
 
@@ -92,5 +92,13 @@ export default function Categories_Section({ header_styles }: Props) {
         }
       </SidebarContent>
     </SidebarGroup>
+  );
+}
+
+export default function Wrapper({ header_styles }: Props) {
+  return (
+    <Suspense>
+      <Categories_Section header_styles={header_styles} />
+    </Suspense>
   );
 }

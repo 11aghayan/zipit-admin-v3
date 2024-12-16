@@ -2,11 +2,11 @@
 
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-import { useCallback } from 'react';
+import { Suspense, useCallback } from 'react';
 
 import { Input } from '@/components/ui/input';
 
-export default function Search() {
+function Search() {
   const search_params = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -49,5 +49,13 @@ export default function Search() {
         }}
       />
     </div>
+  );
+}
+
+export default function Wrapper() {
+  return (
+    <Suspense>
+      <Search />
+    </Suspense>
   );
 }

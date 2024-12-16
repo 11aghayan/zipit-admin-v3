@@ -2,11 +2,12 @@
 
 import { Icon } from "@iconify/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button";
 import { logout } from "@/app/actions/auth-actions";
 
-export default function Logout_Btn() {
+function Logout_Btn() {
   const router = useRouter();
   const pathname = usePathname();
   const search_params = new URLSearchParams(useSearchParams().toString());
@@ -31,3 +32,11 @@ export default function Logout_Btn() {
     </Button>
   );
 }
+
+export default function Wrapper() {
+  return (
+    <Suspense>
+      <Logout_Btn />
+    </Suspense>
+  );
+} 

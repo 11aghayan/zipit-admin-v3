@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import clsx from "clsx";
 
@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Item_Card from "./Item_Card";
 import Items_Pagination from "./Item_Pagination";
 
-export default function Item_List() {
+function Item_List() {
   
   const search_params = new URLSearchParams(useSearchParams().toString());
   const page = Number(search_params.get("page") || "1");
@@ -81,5 +81,13 @@ export default function Item_List() {
         pages={pages}
       />
     </div>
+  );
+}
+
+export default function Wrapper() {
+  return (
+    <Suspense>
+      <Item_List />
+    </Suspense>
   );
 }

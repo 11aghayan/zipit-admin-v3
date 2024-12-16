@@ -1,5 +1,5 @@
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SidebarContent, SidebarGroup, SidebarGroupLabel } from "@/components/ui/sidebar";
@@ -8,7 +8,7 @@ import { T_Section_Props } from "../Filters_Menu";
 
 type Props = T_Section_Props;
 
-export default function Count_Section({ header_styles }: Props) {
+function Count_Section({ header_styles }: Props) {
   const router = useRouter();
   const search_params = new URLSearchParams(useSearchParams().toString());
   
@@ -40,5 +40,13 @@ export default function Count_Section({ header_styles }: Props) {
         </Select>
       </SidebarContent>
     </SidebarGroup>
+  );
+}
+
+export default function Wrapper({ header_styles }: Props) {
+  return (
+    <Suspense>
+      <Count_Section header_styles={header_styles} />
+    </Suspense>
   );
 }

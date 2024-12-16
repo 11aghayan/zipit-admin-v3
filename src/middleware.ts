@@ -21,12 +21,12 @@ export default async function middleware(req: NextRequest) {
   if (!token && !pathname.startsWith("/login")) {
     url.pathname = '/login';
     url.searchParams.set("pathfrom", pathname.slice(1));
-    return NextResponse.redirect(url);
+    return NextResponse.redirect(url, { status: 303 });
   }
 
   if (token && (pathname.startsWith("/login") || pathname === "/")) {
     url.pathname = `/${path_from}`;
-    return NextResponse.redirect(url);
+    return NextResponse.redirect(url, { status: 303 });
   }
   
   return NextResponse.next(); 
