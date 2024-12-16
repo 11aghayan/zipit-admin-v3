@@ -55,7 +55,7 @@ export type T_Color = {
 export type T_Photo = {
   id: T_ID;
   item_id: T_ID;
-  src: string;
+  src: string[] | [];
 };
 
 export type T_Item_Info = {

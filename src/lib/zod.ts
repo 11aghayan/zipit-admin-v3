@@ -38,8 +38,8 @@ export const item_add_schema = object({
   category_id: string({ required_error: "Կատեգորիան բացակայում է" })
     .min(10, "Կատեգորիան բացակայում է"),
   variants: object({
-    src: string({ required_error: "Լուսանկարը բացակայում է" })
-      .min(10, "Լուսանկարը բացակայում է"),
+    src: string({ required_error: "Լուսանկարը բացակայում է" }).array()
+      .min(1, "Լուսանկարը բացակայում է"),
     color_am: string({ required_error: "Հայերեն գույնը բացակայում է" })
       .min(1, "Հայերեն գույնը բացակայում է"),
     color_ru: string({ required_error: "Ռուսերեն գույնը բացակայում է" })

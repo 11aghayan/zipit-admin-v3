@@ -5,7 +5,7 @@ import { AccordionContent, AccordionItem, Accordion, AccordionTrigger } from "@/
 import { size_unit_map } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-import Photo from "./Photo";
+import Photo from "./photo/Photos";
 import Color from "./Color";
 import Size from "./Size";
 import Min_Order from "./Min_Order";
@@ -116,7 +116,7 @@ export default function Variant({ set_item, variant, index, variants_count }: Pr
 }
 
 export const new_variant = {
-  src: "",
+  src: [],
   available: 1,
   color_am: "",
   color_ru: "",
