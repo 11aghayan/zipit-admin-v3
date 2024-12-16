@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from 'next/headers';
 
 export default async function middleware(req: NextRequest) {
-  const token = req.cookies.get("jwt_token");
+  const token = (await cookies()).get("jwt_token");
   const url = req.nextUrl.clone();
   const { pathname, searchParams } = url;
   
@@ -11,8 +12,8 @@ export default async function middleware(req: NextRequest) {
     '/api',
     '/favicon.ico'
   ];
-console.log(pathname);
-console.log(token);
+  
+  console.log("Token: ", token?.value || "No token");
   if (excluded_paths.some(path => pathname.startsWith(path))) {
     return NextResponse.next();
   }
