@@ -32,10 +32,10 @@ export default function Selected_Photo({ selected_photo, set_item, set_selected_
     
     set_item(prev => ({
       ...prev,
-      variants: prev.variants.map(v => ({
+      variants: prev.variants.map(v => v.temp_id === variant.temp_id ? ({
         ...v,
         src: v.src.filter((_s, i) => i !== selected_photo?.index)
-      }))
+      }) : v)
     }));
   }
   return (
