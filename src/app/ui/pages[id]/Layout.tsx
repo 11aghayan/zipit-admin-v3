@@ -8,6 +8,7 @@ import { add_item, delete_item, edit_item } from "@/app/actions/item-actions";
 import { Action_Error } from "@/app/actions/lib";
 import { useToast } from "@/hooks/use-toast";
 import Delete_Modal from "@/app/ui/Delete_Modal";
+import { append_temp_id } from "@/lib/utils";
 
 import Common_Data from "./Common_Data";
 import Variant, { new_variant } from "./Variant";
@@ -37,14 +38,15 @@ export default function Layout({ item, set_item, action }: Props) {
       return;
     }
 
-    set_item(res.data);
+    set_item(append_temp_id(res.data));
     router.replace(`/items/${res.data.id}`);
     toast({
       title: "Ապրանքը հաջողությամբ պահպանվել է"
     });
   } 
-  
-  async function handle_edit() {
+  async function handle_edit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+
     set_is_loading(true);
     set_errors([]);
     const res = await edit_item(item as T_Item_Body<"edit">);
@@ -55,12 +57,12 @@ export default function Layout({ item, set_item, action }: Props) {
       return;
     }
 
-    set_item(res.data);
+    set_item(append_temp_id(res.data));
     toast({
       title: "Փոփոխությունները հաջողությամբ պահպանվել են"
     });
   }
-  
+
   return (
     <div>
       {
@@ -81,17 +83,17 @@ export default function Layout({ item, set_item, action }: Props) {
         item={item}
       />
       {
-        item.variants.map((variant, i, arr) => (
+        item.variants.map((variant, i) => (
           "delete" in variant
           ?
           null
           :
           <Variant 
+            item={item}
             key={i}
             variant={variant}
             set_item={set_item}
             index={i}
-            variants_count={arr.length}
           />
         ))
       }
@@ -106,7 +108,7 @@ export default function Layout({ item, set_item, action }: Props) {
             ...prev, 
             variants: [
               ...prev.variants, 
-              new_variant
+              new_variant()
           ]}))}
         >
           Ավելացնել նոր տարբերակ
@@ -116,7 +118,7 @@ export default function Layout({ item, set_item, action }: Props) {
           ?
           <Delete_Modal 
             delete_func={delete_item}
-            id={(item as T_Item<"full">).id}
+            id={(item as unknown as T_Item<"full">).id}
             is_open={is_delete_modal_open}
             label={item.name_am}
             set_is_open={set_is_delete_modal_open}

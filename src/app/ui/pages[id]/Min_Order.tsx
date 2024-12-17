@@ -1,16 +1,15 @@
-import { T_Item_Body, T_Item_Variant, T_Min_Order_Unit } from "@/app/types";
+import { T_Item_Body, T_Min_Order_Unit, T_Temp_Variant } from "@/app/types";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { min_order_unit_map } from "@/lib/utils";
 
 type Props = {
-  variant: Omit<T_Item_Variant, "id" | "item_id" | "size_id" | "photo_id" | "color_id" | "creation_date"> | Omit<T_Item_Variant, "creation_date">;
-  set_item: React.Dispatch<React.SetStateAction<T_Item_Body<"add" | "edit">>>;
-  index: number;
+  variant: T_Temp_Variant,
+  set_item: React.Dispatch<React.SetStateAction<T_Item_Body<"add" | "edit">>>
 }
 
-export default function Min_Order({ index, set_item, variant }: Props) {
+export default function Min_Order({ set_item, variant }: Props) {
   return (
     <div className="mt-2 w-full lg:w-1/2">
       <Label className="w-full">
@@ -22,7 +21,7 @@ export default function Min_Order({ index, set_item, variant }: Props) {
           value={variant.min_order_value.toString() ?? ""}
           onChange={e => set_item(prev => ({ 
             ...prev, 
-            variants: prev.variants.map((v, i) => i === index ? { ...v, min_order_value: Number(e.target.value || NaN) } : v)
+            variants: prev.variants.map(v => v.temp_id === variant.temp_id ? { ...v, min_order_value: Number(e.target.value || NaN) } : v)
           }))}
         />
       </Label>
@@ -32,7 +31,7 @@ export default function Min_Order({ index, set_item, variant }: Props) {
           value={variant.min_order_unit}
           onValueChange={val => set_item(prev => ({ 
             ...prev, 
-            variants: prev.variants.map((v, i) => i === index ? { ...v, min_order_unit: val as T_Min_Order_Unit } : v)
+            variants: prev.variants.map(v => v.temp_id === variant.temp_id ? { ...v, min_order_unit: val as T_Min_Order_Unit } : v)
           }))}
         >
           <SelectTrigger className="mt-1">

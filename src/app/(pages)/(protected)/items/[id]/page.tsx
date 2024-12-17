@@ -7,9 +7,9 @@ import { T_Item, T_Item_Body } from "@/app/types";
 import { get_item } from "@/app/actions/item-actions";
 import { Action_Error, Action_Success } from "@/app/actions/lib";
 import { Skeleton } from "@/components/ui/skeleton";
-
 import Layout from "@/app/ui/pages[id]/Layout";
 import { new_variant } from "@/app/ui/pages[id]/Variant";
+import { append_temp_id } from "@/lib/utils";
 
 export default function Item() {
   const { id } = useParams();
@@ -23,7 +23,7 @@ export default function Item() {
         category_id: "",
         name_am: "",
         name_ru: "",
-        variants: [new_variant]
+        variants: [new_variant()]
       });
       set_is_loading(false);
       return;
@@ -65,7 +65,7 @@ export default function Item() {
   }
 
   if (item instanceof Action_Success) {
-    set_item(item.data);
+    set_item(append_temp_id(item.data));
     return null;
   } 
   

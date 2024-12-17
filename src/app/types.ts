@@ -74,10 +74,12 @@ export type T_Item_Info = {
   available: number;
 };
 
+export type T_Temp_Variant = (Omit<T_Item_Variant, "id" | "item_id" | "size_id" | "photo_id" | "color_id" | "creation_date"> | Omit<T_Item_Variant, "creation_date">) & { temp_id: number };
+
 export type T_Item_Body<T extends "add" | "edit"> = T extends "add" ? 
 (Omit<T_Item_Main, "id"> & {
-  variants: (Omit<T_Item_Variant, "id" | "item_id" | "size_id" | "photo_id" | "color_id" | "creation_date">)[]
+  variants: (Omit<T_Item_Variant, "id" | "item_id" | "size_id" | "photo_id" | "color_id" | "creation_date"> & { temp_id: number})[]
 }) : 
 (T_Item_Main & {
-  variants: (Omit<T_Item_Variant, "id" | "item_id" | "size_id" | "photo_id" | "color_id" | "creation_date"> | Omit<T_Item_Variant, "creation_date">)[]
+  variants: T_Temp_Variant[]
 });

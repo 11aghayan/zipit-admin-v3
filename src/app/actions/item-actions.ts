@@ -73,9 +73,13 @@ export async function edit_item(body: T_Item_Body<"edit">) {
       const zod_messages = zod_result.error.errors.map(err => err.message);
       return new Action_Error(zod_messages, "edit_item", zod_result.error) as T_Error;
     }
+    body.variants = body.variants.map(v => {
+      const temp = JSON.parse(JSON.stringify(v));
+      delete temp.temp_id;
+      return temp;
+    });
     
     const { data, status } = await axios.put(`/items/item/admin/${body.id}`, body) satisfies AxiosResponse satisfies { data: { item: T_Item<"full"> } | T_Server_Error_Response };
-
     if (!is_status_success(status)) {
       return new Action_Error(data.message, "edit_item", data.message);
     }
