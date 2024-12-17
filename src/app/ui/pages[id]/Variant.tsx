@@ -31,6 +31,7 @@ export default function Variant({ set_item, variant, item, index }: Props) {
           if (v.temp_id !== variant.temp_id) return v;
           return {
             ...v,
+            src: ["empty"],
             delete: true
           }
         })
