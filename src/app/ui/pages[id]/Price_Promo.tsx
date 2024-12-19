@@ -1,6 +1,7 @@
-import { T_Item_Body, T_Item_Variant, T_Temp_Variant } from "@/app/types";
+import { T_Item_Body, T_Temp_Variant } from "@/app/types";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { get_numeric } from "@/lib/utils";
 
 type Props = {
   variant: T_Temp_Variant,
@@ -14,12 +15,11 @@ export default function Price_Promo({ variant, set_item }: Props) {
         Գին
         <Input 
           className="mt-1"
-          type="number"
-          min={1}
+          type="text"
           value={variant?.price.toString() ?? ""}
           onChange={e => set_item(prev => ({ 
             ...prev, 
-            variants: prev.variants.map(v => v.temp_id === variant.temp_id ? { ...v, price: Number(e.target.value || NaN) } : v)
+            variants: prev.variants.map(v => v.temp_id === variant.temp_id ? { ...v, price: get_numeric(e.target.value) } : v)
           }))}
         />
       </Label>
@@ -27,12 +27,11 @@ export default function Price_Promo({ variant, set_item }: Props) {
         Զեղչ
         <Input 
           className="mt-1"
-          type="number"
-          min={0}
+          type="text"
           value={variant?.promo?.toString() ?? ""}
           onChange={e => set_item(prev => ({ 
             ...prev, 
-            variants: prev.variants.map(v => v.temp_id === variant.temp_id ? { ...v, promo: e.target.value === "0" || e.target.value === "" ? null : Number(e.target.value || NaN) } : v)
+            variants: prev.variants.map(v => v.temp_id === variant.temp_id ? { ...v, promo: get_numeric(e.target.value) } : v)
           }))}
         />
       </Label>

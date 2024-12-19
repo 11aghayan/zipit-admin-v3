@@ -50,7 +50,7 @@ export default function Variant({ set_item, variant, item, index }: Props) {
       type="single"
       collapsible
     >
-      <AccordionItem value={variant.temp_id.toString()}>
+      <AccordionItem value={variant?.temp_id?.toString() ?? index.toString()}>
         <AccordionTrigger>
           <div>
             <span className="w-fit font-bold">
@@ -133,11 +133,11 @@ export function new_variant() {
     description_am: "",
     description_ru: "",
     min_order_unit: "pcs",
-    min_order_value: 1,
-    price: 0,
+    min_order_value: "",
+    price: "",
     promo: null,
     size_unit: "mm",
-    size_value: 0,
+    size_value: "",
     special_group: null
   } as T_Item_Variant & { temp_id: number };
 }

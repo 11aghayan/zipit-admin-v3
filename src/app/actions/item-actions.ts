@@ -53,6 +53,17 @@ export async function add_item(body: T_Item_Body<"add">) {
       return new Action_Error(zod_messages, "add_item", zod_result.error) as T_Error;
     }
     
+    body.variants = body.variants.map(v => {
+      return {
+        ...v,
+        size_value: Number(v.size_value),
+        price: Number(v.price),
+        promo: v.promo === null || (v.promo as string).length < 1 || Number(v.promo) <= 0 ? null : Number(v.promo),
+        min_order_value: Number(v.min_order_value),
+        available: Number(v.available)
+      }
+    });
+    
     const { data, status } = await axios.post("/items/item/admin", body) satisfies AxiosResponse satisfies { data: { item: T_Item<"full"> } | T_Server_Error_Response };
 
     if (!is_status_success(status)) {
@@ -68,7 +79,7 @@ export async function add_item(body: T_Item_Body<"add">) {
 export async function edit_item(body: T_Item_Body<"edit">) {
   try {
     const zod_result = await item_schema.safeParseAsync(body);
-
+    
     if (!zod_result.success) {
       const zod_messages = zod_result.error.errors.map(err => err.message);
       return new Action_Error(zod_messages, "edit_item", zod_result.error) as T_Error;
@@ -76,10 +87,17 @@ export async function edit_item(body: T_Item_Body<"edit">) {
     body.variants = body.variants.map(v => {
       const temp = JSON.parse(JSON.stringify(v));
       delete temp.temp_id;
-      return temp;
+      return {
+        ...temp,
+        size_value: Number(temp.size_value),
+        price: Number(temp.price),
+        promo: temp.promo === null || temp.promo.length < 1 || Number(temp.promo) <= 0 ? null : Number(temp.promo),
+        min_order_value: Number(temp.min_order_value),
+        available: Number(temp.available)
+      }
     });
-    
     const { data, status } = await axios.put(`/items/item/admin/${body.id}`, body) satisfies AxiosResponse satisfies { data: { item: T_Item<"full"> } | T_Server_Error_Response };
+
     if (!is_status_success(status)) {
       return new Action_Error(data.message, "edit_item", data.message);
     }

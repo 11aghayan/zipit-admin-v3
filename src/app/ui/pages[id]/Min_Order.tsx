@@ -2,7 +2,7 @@ import { T_Item_Body, T_Min_Order_Unit, T_Temp_Variant } from "@/app/types";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { min_order_unit_map } from "@/lib/utils";
+import { get_numeric, min_order_unit_map } from "@/lib/utils";
 
 type Props = {
   variant: T_Temp_Variant,
@@ -15,13 +15,12 @@ export default function Min_Order({ set_item, variant }: Props) {
       <Label className="w-full">
         Նվազագույն պատվերի քանակ
         <Input 
-          type="number"
+          type="text"
           className="mt-1"
-          min={0}
           value={variant.min_order_value.toString() ?? ""}
           onChange={e => set_item(prev => ({ 
             ...prev, 
-            variants: prev.variants.map(v => v.temp_id === variant.temp_id ? { ...v, min_order_value: Number(e.target.value || NaN) } : v)
+            variants: prev.variants.map(v => v.temp_id === variant.temp_id ? { ...v, min_order_value: get_numeric(e.target.value) } : v)
           }))}
         />
       </Label>
@@ -40,6 +39,7 @@ export default function Min_Order({ set_item, variant }: Props) {
           <SelectContent>
             <SelectItem value="pcs">{min_order_unit_map("pcs")}</SelectItem>
             <SelectItem value="cm">{min_order_unit_map("cm")}</SelectItem>
+            <SelectItem value="m">{min_order_unit_map("m")}</SelectItem>
             <SelectItem value="box">{min_order_unit_map("box")}</SelectItem>
             <SelectItem value="roll">{min_order_unit_map("roll")}</SelectItem>
           </SelectContent>

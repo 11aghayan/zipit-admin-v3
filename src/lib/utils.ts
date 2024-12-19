@@ -26,7 +26,8 @@ export function min_order_unit_map(unit: T_Min_Order_Unit) {
     pcs: "հատ",
     cm: "սմ",
     box: "տուփ",
-    roll: "գլորում"
+    roll: "գլանափաթէթ",
+    m: "մ"
   };
 
   if (unit in map) {
@@ -59,4 +60,30 @@ export function append_temp_id(item: T_Item<"full">) {
     ...item,
     variants: item.variants.map(v => ({ ...v, temp_id: generate_temp_id() }))
   }
+}
+
+export function get_numeric(val: string) {
+  if (val.length < 1) return "";
+  if (val.at(-1) === ",") {
+    if (val.includes(".")) {
+      return val.slice(0, -1);
+    }
+    if (val.length === 1) {
+      return "0.";
+    }
+    return val.slice(0, -1) + ".";
+  }
+  if (val.at(-1) === ".") {
+    if (val.indexOf(".") !== val.length - 1) {
+      return val.slice(0, -1);
+    }
+    if (val.length === 1) {
+      return "0.";
+    }
+    return val;
+  }
+  if (isNaN(Number(val))) return val.slice(0, -1);
+  if (val.at(-1) === "-") return val.slice(0, -1);
+  if (val === "00") return "0";
+  return val;
 }

@@ -44,13 +44,13 @@ export const item_schema = object({
       .min(1, "Հայերեն գույնը բացակայում է"),
     color_ru: string({ required_error: "Ռուսերեն գույնը բացակայում է" })
       .min(1, "Ռուսերեն գույնը բացակայում է"),
-    min_order_value: number({ required_error: "Նվազագույն պատվերի քանակը բացակայում է", invalid_type_error: "Նվազագույն պատվերի քանակը բացակայում է" })
-      .min(0, "Նվազագույն պատվերի քանակը չի կարող պակաս լինել 0-ից"),
-    price: number({ required_error: "Գինը բացակայում է", invalid_type_error: "Գինը բացակայում է" })
-      .min(1, "Գինը չի կարող պակաս լինել 1-ից"),
-    size_value: number({ required_error: "Չափի արժեքը բացակայում է", invalid_type_error: "Չափի արժեքը բացակայում է" })
-      .min(0, "Չափի արժեքը չի կարող պակաս լինել 0-ից"),
-    promo: number().nullable(),
+    min_order_value: string({ required_error: "Նվազագույն պատվերի քանակը բացակայում է", invalid_type_error: "Նվազագույն պատվերի քանակը բացակայում է" })
+      .min(1, "Նվազագույն պատվերի քանակը բացակայում է"),
+    price: string({ required_error: "Գինը բացակայում է", invalid_type_error: "Գինը բացակայում է" })
+      .min(1, "Գինը բացակայում է"),
+    size_value: string({ required_error: "Չափի արժեքը բացակայում է", invalid_type_error: "Չափի արժեքը բացակայում է" })
+      .min(0, "Չափի արժեքը բացակայում է"),
+    promo: string().nullable(),
     special_group: string().nullable(),
     description_am: string().nullable(),
     description_ru: string().nullable()

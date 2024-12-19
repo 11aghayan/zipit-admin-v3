@@ -1,6 +1,6 @@
 export type T_ID = string;
 export type T_Size_Unit = "mm" | "cm" | "m";
-export type T_Min_Order_Unit = "pcs" | "cm" | "box" | "roll";
+export type T_Min_Order_Unit = "pcs" | "cm" | "box" | "roll" | "m";
 export type T_Special_Group = "new" | "prm" | "liq";
 
 export type T_Props_Children = Readonly<{
@@ -41,7 +41,7 @@ export type T_Item_Variant = T_Item_Info & T_Size & T_Color & T_Photo;
 export type T_Size = {
   id: T_ID;
   item_id: T_ID;
-  size_value: number;
+  size_value: number | string;
   size_unit: T_Size_Unit;
 };
 
@@ -61,11 +61,11 @@ export type T_Photo = {
 export type T_Item_Info = {
   item_id: T_ID;
   photo_id: T_ID;
-  price: number;
-  promo: number | null;
+  price: number | string;
+  promo: number | string | null;
   size_id: T_ID;
   color_id: T_ID;
-  min_order_value: number;
+  min_order_value: number | string;
   min_order_unit: T_Min_Order_Unit;
   description_am: string | null;
   description_ru: string | null;
