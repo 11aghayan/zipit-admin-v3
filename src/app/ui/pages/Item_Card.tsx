@@ -24,7 +24,7 @@ export default function Item_Card({ id, photo_id, name }: Props) {
     <Card className="h-full flex flex-col justify-between ">
       <CardContent className="px-2 pt-6 pb-2">
         <Image 
-          src={`http://localhost:3200/api/v2/photo/${photo_id}?width=250&height=250`} 
+          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/photo/${photo_id}?width=250&height=250`} 
           alt="Product photo" 
           width={150} 
           height={150} 
