@@ -40,6 +40,7 @@ export default function Size({ set_item, variant }: Props) {
             <SelectItem value="mm">{size_unit_map("mm")}</SelectItem>
             <SelectItem value="cm">{size_unit_map("cm")}</SelectItem>
             <SelectItem value="m">{size_unit_map("m")}</SelectItem>
+            <SelectItem value="num">{size_unit_map("num")}</SelectItem>
           </SelectContent>
         </Select>
       </Label>

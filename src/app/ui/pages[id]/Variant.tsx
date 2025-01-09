@@ -56,7 +56,13 @@ export default function Variant({ set_item, variant, item, index }: Props) {
             <span className="w-fit font-bold">
               Տարբերակ {index + 1 + " | "}
             </span>
-            {variant.size_value}{size_unit_map(variant.size_unit)+" / "}
+            {
+              variant.size_unit === "num"
+              ?
+              size_unit_map(variant.size_unit) + variant.size_value
+              :
+              variant.size_value + size_unit_map(variant.size_unit)
+            }{" / "}
             {variant.color_am}{" "}
           </div>
 

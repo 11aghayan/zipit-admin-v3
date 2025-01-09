@@ -11,7 +11,8 @@ export function size_unit_map(unit: T_Size_Unit) {
   const map = {
     mm: "մմ",
     cm: "սմ",
-    m: "մ"
+    m: "մ",
+    num: "#"
   };
   
   if (unit in map) {
